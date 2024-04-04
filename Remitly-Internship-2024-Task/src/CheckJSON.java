@@ -2,7 +2,14 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class CheckJSON {
+    public static String readFileAsString(String file) throws IOException {
+        return new String(Files.readAllBytes(Paths.get(file)));
+    }
     public boolean jsonValidation(String json) {
         try {
             Gson gson = new Gson();
@@ -34,26 +41,9 @@ public class CheckJSON {
             return false;
         }
     }
-    public static void main(String[] args) {
-        String json = """
-                {
-                    "PolicyName": "root",
-                    "PolicyDocument": {
-                        "Version": "2012-10-17",
-                        "Statement": [
-                            {
-                                "Sid": "IamListAccess",
-                                "Effect": "Allow",
-                                "Action": [
-                                    "iam:ListRoles",
-                                    "iam:ListUsers"
-                                ],
-                                "Resource": "*"
-                            }
-                        ]
-                    }
-                }
-                """;
+    public static void main(String[] args) throws Exception {
+        String file = "input/input.json";
+        String json = readFileAsString(file);
 
         CheckJSON check = new CheckJSON();
         boolean isJasonValid = check.jsonValidation(json);
