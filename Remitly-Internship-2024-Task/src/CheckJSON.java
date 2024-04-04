@@ -5,6 +5,8 @@ import com.google.gson.JsonSyntaxException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 public class CheckJSON {
     public static String readFileAsString(String file) throws IOException {
@@ -12,9 +14,37 @@ public class CheckJSON {
     }
     public boolean jsonValidation(String json) {
         try {
-            Gson gson = new Gson();
-            gson.fromJson(json, Object.class);
-//            System.out.print(gson.fromJson(json, Object.class) + "\n");
+            JsonElement rootElement = JsonParser.parseString(json);
+
+            // Sprawdzenie czy JSON jest obiektem
+            if (!rootElement.isJsonObject()) {
+                System.err.println("JSON nie jest obiektem");
+                return false;
+            }
+
+            JsonObject jsonObject = rootElement.getAsJsonObject();
+
+            // Sprawdzenie obecności właściwości PolicyDocument
+            if (!jsonObject.has("PolicyDocument")) {
+                System.err.println("Brak właściwości PolicyDocument");
+                return false;
+            }
+
+            // Sprawdzenie obecności właściwości PolicyName
+            if (!jsonObject.has("PolicyName")) {
+                System.err.println("Brak właściwości PolicyName");
+                return false;
+            }
+
+            // Pobranie wartości właściwości PolicyName
+            String policyName = jsonObject.get("PolicyName").getAsString();
+
+            // Sprawdzenie poprawności wartości właściwości PolicyName
+            if (!policyName.matches("[\\w+=,.@-]+") || policyName.length() < 1 || policyName.length() > 128) {
+                System.err.println("Niepoprawna wartość właściwości PolicyName");
+                return false;
+            }
+
             System.out.println("JSON jest poprawny!");
             return true;
         } catch (JsonSyntaxException e) {
