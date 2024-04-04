@@ -1,7 +1,10 @@
-# CheckJSON - Sprawdzanie poprawności JSON
+# Remitly Internship 2024 Task
+## CheckJSON - Sprawdzanie poprawności JSON
+
 
 ## Opis
-CheckJSON to prosty program napisany w języku Java, który umożliwia walidację i analizę struktury plików JSON. Program sprawdza, czy podany plik JSON spełnia określone wymagania dotyczące właściwości `PolicyDocument` i `PolicyName`. Dodatkowo, program sprawdza obecność oraz poprawność pola `Resource` w strukturze JSON. Jeżeli pole `Resource` zawiera pojedynczy znak `*` - program zwraca wartość `True`. W każdym innym przypadku program zwraca wartość `False`.
+CheckJSON to prosty program napisany w języku Java, który umożliwia walidację i analizę struktury plików JSON. Program sprawdza, czy podany plik JSON spełnia określone wymagania dotyczące właściwości `PolicyDocument` i `PolicyName`. Dodatkowo, program sprawdza obecność oraz poprawność pola `Resource` w strukturze JSON. Jeżeli pole `Resource` zawiera pojedynczy znak `*` - program zwraca wartość `True`. W każdym innym przypadku program zwraca wartość `False`. W zadaniu zadbano o obsługę błędów, uwzględnienie przypadków krawędziowych oraz zaimplementowano testy jednostkowe. Program poza boolowską wartością `True` lub `False` zwraca również informację o błedzie lub poprawności wejściowego JSON'a.
+
 
 ## Uruchomienie
 Aby uruchomić program, wykonaj następujące kroki:
@@ -17,27 +20,13 @@ Upewnij się, że masz zainstalowane wymagane narzędzia:
 - Java Development Kit (JDK)
 - Apache Maven
 
-### 3. Uruchomienie testów jednostkowych
-Przejdź do głównego katalogu projektu i wykonaj polecenie Maven, aby uruchomić testy jednostkowe:
+### 3. Uruchomienie projektu w IntelliJ IDEA
 
-    cd Remitly-Internship-2024-Task
-    mvn test
+W IntelliJ IDEA otwórz projekt `File` -> `Open`. Następnie wybierz najbardziej wewnętrzny katalog `Remitly-Internship-2024-Task` 
 
-### 4. Uruchomienie programu
-Aby uruchomić program na własnym pliku JSON, edytuj plik `input/input.json` zgodnie z własnymi wymaganiami. Następnie możesz użyć jednego z poniższych sposobów:
+### 4. Uruchomienie testów jednostkowych
+Przejdź do katalogu `src` i uruchomić program klikając przycisk "Run". Upewnij się, że masz otwartą klasę `CheckJSONTest`.
 
-- **Uruchomienie z linii poleceń:**
-
-  ```bash
-  mvn exec:java -Dexec.mainClass="CheckJSON"
-  ```
-
-lub
-
-  ```bash
-  java -cp target/classes CheckJSON
-  ```
-
-Uruchomienie za pomocą IntelliJ IDEA:
-
-W IntelliJ IDEA możesz uruchomić program klikając przycisk "Run" lub używając skrótu klawiszowego Shift + F10. Upewnij się, że masz zdefiniowaną konfigurację uruchamiania dla klasy CheckJSON.
+### 5. Uruchomienie programu
+Aby uruchomić program na własnym pliku JSON, edytuj plik `input/input.json` zgodnie z własnymi wymaganiami.
+Przejdź do katalogu `src` i uruchomić program klikając przycisk "Run". Upewnij się, że masz otwartą klasę `CheckJSON`.
